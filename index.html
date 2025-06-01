@@ -31,13 +31,12 @@
             align-items: center;
             justify-content: center;
             z-index: 2000;
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            transition: opacity 0.5s ease;
             overflow: hidden;
         }
 
         .loader.hidden {
             opacity: 0;
-            transform: scale(1.1);
             pointer-events: none;
         }
 
@@ -45,54 +44,37 @@
             font-size: 2.5rem;
             font-weight: bold;
             color: #FFD700;
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
-            animation: logoReveal 2s ease-out forwards;
-            margin-bottom: 2rem;
-            position: relative;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+            animation: logoReveal 1s ease-out forwards;
+            margin-bottom: 1.5rem;
         }
 
         @keyframes logoReveal {
             0% {
                 opacity: 0;
-                transform: scale(0.5) translateY(50px);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1.2) translateY(0);
+                transform: scale(0.5) translateY(30px);
             }
             100% {
+                opacity: 1;
                 transform: scale(1) translateY(0);
             }
         }
 
         .progress-bar-container {
-            width: 350px;
-            height: 8px;
+            width: 300px;
+            height: 6px;
             background: rgba(255, 255, 255, 0.15);
-            border-radius: 4px;
+            border-radius: 3px;
             overflow: hidden;
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
         }
 
         .progress-bar-fill {
             height: 100%;
-            background: linear-gradient(90deg, #FFD700, #FFA500, #FFD700);
-            border-radius: 4px;
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+            border-radius: 3px;
             width: 0%;
-            animation: progressFill 4s ease-out forwards;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .progress-bar-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.5), transparent);
-            animation: shimmer 2s ease-in-out infinite;
+            animation: progressFill 2s ease-out forwards;
         }
 
         @keyframes progressFill {
@@ -100,23 +82,18 @@
             100% { width: 100%; }
         }
 
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
         .loading-text {
             color: #FFD700;
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-style: italic;
-            margin-top: 1.5rem;
-            animation: textPulse 1.8s ease-in-out infinite;
-            text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+            margin-top: 1rem;
+            animation: textPulse 1s ease-in-out infinite;
+            text-shadow: 0 0 6px rgba(255, 215, 0, 0.5);
         }
 
         @keyframes textPulse {
-            0%, 100% { opacity: 0.6; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.05); }
+            0%, 100% { opacity: 0.7; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.03); }
         }
 
         .loader-particles {
@@ -129,12 +106,12 @@
 
         .loader-particle {
             position: absolute;
-            width: 6px;
-            height: 6px;
-            background: rgba(255, 215, 0, 0.9);
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 215, 0, 0.8);
             border-radius: 50%;
-            box-shadow: 0 0 12px rgba(255, 215, 0, 0.7);
-            animation: particleRise 5s linear infinite;
+            box-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+            animation: particleRise 3s linear infinite;
         }
 
         @keyframes particleRise {
@@ -143,36 +120,29 @@
                 opacity: 0;
             }
             20% {
-                opacity: 1;
-            }
-            80% {
-                opacity: 1;
+                opacity: 0.8;
             }
             100% {
-                transform: translateY(-150px) scale(1.2);
+                transform: translateY(-100px) scale(1);
                 opacity: 0;
             }
         }
 
         .loader-note {
             position: absolute;
-            font-size: 1.5rem;
-            color: rgba(255, 215, 0, 0.7);
-            animation: noteFloat 6s ease-in-out infinite;
+            font-size: 1.2rem;
+            color: rgba(255, 215, 0, 0.6);
+            animation: noteFloat 3s ease-in-out infinite;
             pointer-events: none;
         }
 
         @keyframes noteFloat {
             0% {
                 transform: translateY(100vh) rotate(0deg);
-                opacity: 0.3;
-            }
-            50% {
-                transform: translateY(-50vh) rotate(180deg);
-                opacity: 0.8;
+                opacity: 0.4;
             }
             100% {
-                transform: translateY(-100vh) rotate(360deg);
+                transform: translateY(-50vh) rotate(180deg);
                 opacity: 0;
             }
         }
@@ -1238,26 +1208,26 @@
         window.addEventListener('load', () => {
             const loader = document.getElementById('loader');
             const particleContainer = document.getElementById('loader-particles');
-            const notes = ['♪', '♫', '♬', '♩', '♭', '♯'];
+            const notes = ['♪', '♫', '♬', '♩'];
 
             // Create loader particles
-            for (let i = 0; i < 40; i++) {
+            for (let i = 0; i < 20; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'loader-particle';
                 particle.style.left = `${Math.random() * 100}%`;
-                particle.style.animationDelay = `${Math.random() * 5}s`;
-                particle.style.animationDuration = `${4 + Math.random() * 3}s`;
+                particle.style.animationDelay = `${Math.random() * 3}s`;
+                particle.style.animationDuration = `${2 + Math.random() * 2}s`;
                 particleContainer.appendChild(particle);
             }
 
             // Create floating musical notes
-            for (let i = 0; i < 15; i++) {
+            for (let i = 0; i < 8; i++) {
                 const note = document.createElement('div');
                 note.className = 'loader-note';
                 note.textContent = notes[Math.floor(Math.random() * notes.length)];
                 note.style.left = `${Math.random() * 100}%`;
-                note.style.animationDelay = `${Math.random() * 3}s`;
-                note.style.animationDuration = `${5 + Math.random() * 2}s`;
+                note.style.animationDelay = `${Math.random() * 2}s`;
+                note.style.animationDuration = `${2 + Math.random() * 1}s`;
                 particleContainer.appendChild(note);
             }
 
@@ -1266,8 +1236,8 @@
                 loader.classList.add('hidden');
                 setTimeout(() => {
                     loader.style.display = 'none';
-                }, 800);
-            }, 4500);
+                }, 500);
+            }, 2500);
         });
 
         // Smooth scrolling for navigation links
@@ -1326,7 +1296,7 @@
                 const tagline = document.querySelector('.hero .tagline');
                 const originalText = tagline.textContent;
                 typeWriter(tagline, originalText, 80);
-            }, 5000);
+            }, 3000);
         });
 
         // Add floating animation to album covers
@@ -1519,7 +1489,7 @@
             createMusicalNotes();
             addScrollAnimations();
             addRainbowEffect();
-        }, 4500);
+        }, 2500);
     </script>
 </body>
 </html>
