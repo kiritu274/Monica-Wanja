@@ -18,41 +18,42 @@
             overflow-x: hidden;
         }
 
-        /* Enhanced Loader Styles */
+        /* Loader Styles */
         .loader {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #1a1a1a 0%, #4a4a4a 100%);
+            background: linear-gradient(135deg, #90deg, #1a1a1a 0%, #4a4a4a 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            z-index: 2000;
-            transition: opacity 0.5s ease;
+            z-index: 1000;
+            transition: opacity 0.2s ease-in-out;
             overflow: hidden;
         }
 
         .loader.hidden {
+            display: none;
             opacity: 0;
             pointer-events: none;
         }
 
         .loader-logo {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: bold;
             color: #FFD700;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
-            animation: logoReveal 1s ease-out forwards;
-            margin-bottom: 1.5rem;
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+            animation: logoReveal 0.6s ease-out forwards;
+            margin-bottom: 0.8rem;
         }
 
         @keyframes logoReveal {
             0% {
                 opacity: 0;
-                transform: scale(0.5) translateY(30px);
+                transform: scale(0.5) translateY(20px);
             }
             100% {
                 opacity: 1;
@@ -61,20 +62,19 @@
         }
 
         .progress-bar-container {
-            width: 300px;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 3px;
+            width: 250px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
             overflow: hidden;
-            box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
         }
 
         .progress-bar-fill {
             height: 100%;
-            background: linear-gradient(90deg, #FFD700, #FFA500);
-            border-radius: 3px;
+            background: #FFD700;
+            border-radius: 4px;
             width: 0%;
-            animation: progressFill 2s ease-out forwards;
+            animation: progressFill 1s ease-out forwards;
         }
 
         @keyframes progressFill {
@@ -84,11 +84,11 @@
 
         .loading-text {
             color: #FFD700;
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-style: italic;
-            margin-top: 1rem;
+            margin-top: 0.5rem;
             animation: textPulse 1s ease-in-out infinite;
-            text-shadow: 0 0 6px rgba(255, 215, 0, 0.5);
+            text-shadow: 0 0 4px rgba(255, 215, 0, 0.4);
         }
 
         @keyframes textPulse {
@@ -106,12 +106,12 @@
 
         .loader-particle {
             position: absolute;
-            width: 5px;
-            height: 5px;
+            width: 4px;
+            height: 4px;
             background: rgba(255, 215, 0, 0.8);
             border-radius: 50%;
-            box-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
-            animation: particleRise 3s linear infinite;
+            box-shadow: 0 0 6px rgba(255, 215, 0, 0.5);
+            animation: particleRise 1.5s linear infinite;
         }
 
         @keyframes particleRise {
@@ -122,28 +122,61 @@
             20% {
                 opacity: 0.8;
             }
+            80% {
+                opacity: 0.8;
+            }
             100% {
-                transform: translateY(-100px) scale(1);
+                transform: translateY(-80px) scale(1);
                 opacity: 0;
             }
         }
 
         .loader-note {
             position: absolute;
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: rgba(255, 215, 0, 0.6);
-            animation: noteFloat 3s ease-in-out infinite;
+            animation: noteFloat 2s ease-in-out infinite;
             pointer-events: none;
         }
 
         @keyframes noteFloat {
             0% {
                 transform: translateY(100vh) rotate(0deg);
-                opacity: 0.4;
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateY(-50vh) rotate(180deg);
+                opacity: 0.7;
             }
             100% {
-                transform: translateY(-50vh) rotate(180deg);
+                transform: translateY(-100vh) rotate(360deg);
                 opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .loader-logo {
+                font-size: 1.6rem;
+            }
+            .progress-bar-container {
+                width: 180px;
+                height: 4px;
+            }
+            .progress-bar-fill {
+                animation: progressFill 0.6s ease-out forwards;
+            }
+            .loader-particle {
+                animation-duration: 1s;
+                width: 3px;
+                height: 3px;
+            }
+            .loader-note {
+                animation-duration: 1.5s;
+                font-size: 0.8rem;
+            }
+            .loading-text {
+                font-size: 0.8rem;
+                margin-top: 0.3rem;
             }
         }
 
@@ -156,13 +189,7 @@
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-            animation: headerPulse 3s ease-in-out infinite;
-        }
-
-        @keyframes headerPulse {
-            0%, 100% { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
-            50% { box-shadow: 0 2px 20px rgba(255, 215, 0, 0.2); }
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
         .container {
@@ -181,28 +208,6 @@
             font-size: 1.8rem;
             font-weight: bold;
             color: #FFD700;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .logo::after {
-            content: '✨';
-            position: absolute;
-            right: -20px;
-            top: 50%;
-            transform: translateY(-50%);
-            animation: sparkle 2s ease-in-out infinite;
-        }
-
-        @keyframes sparkle {
-            0%, 100% {
-                opacity: 0;
-                transform: translateY(-50%) scale(0.5);
-            }
-            50% {
-                opacity: 1;
-                transform: translateY(-50%) scale(1);
-            }
         }
 
         .nav-links {
@@ -214,30 +219,12 @@
         .nav-links a {
             color: white;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: color 0.3s ease;
             font-weight: 500;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .nav-links a::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: -100%;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, #FFD700, #FFA500);
-            transition: left 0.3s ease;
         }
 
         .nav-links a:hover {
             color: #FFD700;
-            transform: translateY(-2px);
-        }
-
-        .nav-links a:hover::before {
-            left: 0;
         }
 
         /* Hero Section */
@@ -250,53 +237,6 @@
             overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><radialGradient id="grad" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:rgba(255,215,0,0.1)" /><stop offset="100%" style="stop-color:rgba(255,215,0,0)" /></radialGradient></defs><circle cx="50" cy="50" r="50" fill="url(%23grad)" /></svg>') center/cover;
-            animation: pulse 4s ease-in-out infinite;
-        }
-
-        .hero::after {
-            content: '♪ ♫ ♪ ♫ ♪';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 2rem;
-            color: rgba(255, 215, 0, 0.3);
-            animation: floatingNotes 6s ease-in-out infinite;
-            pointer-events: none;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-        }
-
-        @keyframes floatingNotes {
-            0%, 100% {
-                transform: translate(-50%, -50%) rotate(0deg);
-                opacity: 0.3;
-            }
-            25% {
-                transform: translate(-45%, -55%) rotate(5deg);
-                opacity: 0.6;
-            }
-            50% {
-                transform: translate(-55%, -45%) rotate(-3deg);
-                opacity: 0.4;
-            }
-            75% {
-                transform: translate(-48%, -52%) rotate(2deg);
-                opacity: 0.7;
-            }
-        }
-
         .hero-content {
             position: relative;
             z-index: 2;
@@ -306,16 +246,7 @@
             font-size: 3.5rem;
             margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            animation: fadeInUp 1s ease-out, textGlow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes textGlow {
-            from {
-                text-shadow: 2px 2px 4px rgba(0,0,0,0.5), 0 0 20px rgba(255, 215, 0, 0.3);
-            }
-            to {
-                text-shadow: 2px 2px 4px rgba(0,0,0,0.5), 0 0 30px rgba(255, 215, 0, 0.6);
-            }
+            animation: fadeInUp 1s ease-out;
         }
 
         .hero .subtitle {
@@ -352,36 +283,13 @@
             border-radius: 50px;
             font-weight: bold;
             font-size: 1.1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
-            animation: fadeInUp 1s ease-out 0.6s both, buttonPulse 2s ease-in-out infinite;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            transition: left 0.7s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
         }
 
         .cta-button:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
-        }
-
-        .cta-button:hover::before {
-            left: 100%;
-        }
-
-        @keyframes buttonPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(255, 215, 0, 0.4);
         }
 
         /* About Section */
@@ -400,17 +308,8 @@
         .about-image {
             width: 100%;
             height: 400px;
-            background: linear-gradient(45deg, #8B4513, #D2B48C);
             border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            position: relative;
-            overflow: hidden;
-            animation: imageFloat 4s ease-in-out infinite;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
         }
 
         .about-image img {
@@ -418,27 +317,6 @@
             height: 100%;
             object-fit: cover;
             border-radius: 20px;
-        }
-
-        .about-image::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(from 0deg, transparent, rgba(255, 215, 0, 0.2), transparent);
-            animation: rotate 8s linear infinite;
-        }
-
-        @keyframes imageFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
         }
 
         .about-text h2 {
@@ -464,28 +342,6 @@
             font-size: 2.5rem;
             margin-bottom: 40px;
             color: #333;
-            position: relative;
-        }
-
-        .music h2::after {
-            content: '🎵';
-            position: absolute;
-            right: -50px;
-            top: 50%;
-            transform: translateY(-50%);
-            animation: bounce 2s ease-in-out infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(-50%);
-            }
-            40% {
-                transform: translateY(calc(-50% - 10px));
-            }
-            60% {
-                transform: translateY(calc(-50% - 5px));
-            }
         }
 
         .albums-grid {
@@ -500,15 +356,13 @@
             border-radius: 15px;
             padding: 25px;
             text-align: center;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            overflow: hidden;
         }
 
         .album-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
         }
 
         .album-card iframe {
@@ -545,16 +399,11 @@
             cursor: pointer;
             margin: 5px;
             font-size: 14px;
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease;
         }
 
         .control-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        .control-btn:active {
-            transform: translateY(0);
         }
 
         .listen-btn {
@@ -565,13 +414,12 @@
             border-radius: 25px;
             cursor: pointer;
             font-size: 16px;
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease;
             margin-top: 10px;
         }
 
         .listen-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
         }
 
         .audio-player {
@@ -620,23 +468,6 @@
             font-size: 2.5rem;
             margin-bottom: 3rem;
             color: #FFD700;
-            animation: slideInFromRight 1s ease-out, titlePulse 4s ease-in-out infinite;
-        }
-
-        @keyframes slideInFromRight {
-            from {
-                opacity: 0;
-                transform: translateX(100px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes titlePulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
         }
 
         .ministry-grid {
@@ -650,37 +481,18 @@
             padding: 2rem;
             border-radius: 15px;
             text-align: center;
-            backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             transition: transform 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .ministry-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: left 0.8s ease;
         }
 
         .ministry-card:hover {
             transform: translateY(-5px);
         }
 
-        .ministry-card:hover::before {
-            left: 100%;
-        }
-
         .ministry-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
             color: #FFD700;
-            animation: bounce 2s ease-in-out infinite;
         }
 
         /* Contact Section */
@@ -694,33 +506,6 @@
             font-size: 2.5rem;
             margin-bottom: 3rem;
             color: #2c1810;
-            animation: zoomIn 1s ease-out;
-            position: relative;
-        }
-
-        .contact h2::before {
-            content: '📞';
-            position: absolute;
-            left: -60px;
-            top: 50%;
-            transform: translateY(-50%);
-            animation: swing 2s ease-in-out infinite;
-        }
-
-        @keyframes zoomIn {
-            from {
-                opacity: 0;
-                transform: scale(0.5);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        @keyframes swing {
-            0%, 100% { transform: translateY(-50%) rotate(-10deg); }
-            50% { transform: translateY(-50%) rotate(10deg); }
         }
 
         .contact-info {
@@ -734,33 +519,12 @@
             background: white;
             padding: 2rem;
             border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-item::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: radial-gradient(circle, rgba(139, 69, 19, 0.1) 0%, transparent 70%);
-            transform: translate(-50%, -50%);
-            transition: all 0.6s ease;
-            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
         }
 
         .contact-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-
-        .contact-item:hover::before {
-            width: 200px;
-            height: 200px;
         }
 
         .contact-item h3 {
@@ -798,59 +562,36 @@
             .about-image {
                 order: -1;
             }
-
-            .loader-logo {
-                font-size: 2rem;
-            }
-
-            .progress-bar-container {
-                width: 250px;
-            }
         }
 
-        /* Floating Animation */
+        /* Animations */
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
         }
 
-        /* Particle Animation */
         @keyframes particleFloat {
             0% {
                 transform: translateY(0px) rotate(0deg) scale(1);
                 opacity: 1;
             }
-            25% {
-                transform: translateY(-30px) rotate(90deg) scale(1.2);
-                opacity: 0.8;
-            }
-            50% {
-                transform: translateY(-60px) rotate(180deg) scale(0.8);
-                opacity: 0.6;
-            }
-            75% {
-                transform: translateY(-90px) rotate(270deg) scale(1.1);
-                opacity: 0.4;
-            }
             100% {
-                transform: translateY(-120px) rotate(360deg) scale(0.5);
+                transform: translateY(-100px) rotate(360deg) scale(0.5);
                 opacity: 0;
             }
         }
 
-        /* Note Rising Animation */
         @keyframes noteRise {
             0% {
                 transform: translateY(0) rotate(0deg);
                 opacity: 1;
             }
             100% {
-                transform: translateY(-200px) rotate(360deg);
+                transform: translateY(-150px) rotate(360deg);
                 opacity: 0;
             }
         }
 
-        /* Slide In Animation */
         @keyframes slideInUp {
             from {
                 opacity: 0;
@@ -864,14 +605,14 @@
     </style>
 </head>
 <body>
-    <!-- Enhanced Loader -->
+    <!-- Loader -->
     <div class="loader" id="loader">
         <div class="loader-particles" id="loader-particles"></div>
-        <div class="loader-logo">Monica Wanja</div>
+        <div class="loader-logo"></div>
         <div class="progress-bar-container">
             <div class="progress-bar-fill"></div>
         </div>
-        <div class="loading-text">Spreading God's Love Through Song...</div>
+        <div class="loading-text"></div>
     </div>
 
     <header>
@@ -907,8 +648,7 @@
                 <div class="about-text">
                     <h2>Called to Minister Through Music</h2>
                     <p>Monica Wanja Kangara is a passionate gospel musician dedicated to spreading God's love through the power of music. With a heart for worship and a voice anointed by the Holy Spirit, she has been ministering to congregations and communities across Kenya and beyond.</p>
-                    <p>Her music blends contemporary gospel with traditional African rhythms, creating a unique sound that touches hearts and draws people closer to Christ. Through her ministry, Monica seeks to encourage believers, reach the lost, and glorify God in all she does.</p>
-                    <p>Born and raised with a deep love for music and faith, Monica began her musical journey in church choirs before stepping into solo ministry. Her authentic worship style and heartfelt lyrics have blessed many lives and continue to impact the gospel music scene.</p>
+                    <p>Her music blends contemporary gospel with traditional African rhythms, creating a unique sound that touches hearts and draws people closer to Christ.</p>
                 </div>
             </div>
         </div>
@@ -918,18 +658,17 @@
         <div class="container">
             <h2>Music & Albums</h2>
             <div class="albums-grid">
-                <!-- Album 1: UGIMA WA MWIRI NI KIHEO -->
                 <div class="album-card">
                     <iframe
                         src="https://www.youtube.com/embed/AUv4quYRpOc?si=aSJLvM_NI-CQazkm"
                         height="200px"
-                        title="UGIMA WA MWIRI NI KIHEO - YouTube video player"
+                        title="UGIMA WA MWIRI NI KIHEO"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerpolicy="strict-origin-when-cross-origin"
                         allowfullscreen>
                     </iframe>
                     <h3>UGIMA WA MWIRI NI KIHEO</h3>
-                    <p>A collection of uplifting worship songs that celebrate God's goodness and faithfulness.</p>
+                    <p>A collection of uplifting worship songs.</p>
                     <button class="listen-btn" onclick="togglePlayer('player1')">Listen to Sample</button>
                     <div id="player1" class="audio-player">
                         <audio id="audio1" preload="metadata">
@@ -949,197 +688,19 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Album 2: RUGENDOINI-INI -->
+                <!-- Placeholder for other albums -->
                 <div class="album-card">
                     <iframe
                         src="https://www.youtube.com/embed/0cckoa81wts?si=uUZchNYC5hN5iL1h"
                         height="200px"
-                        title="RUGENDOINI-INI - YouTube video player"
+                        title="RUGENDOINI-INI"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerpolicy="strict-origin-when-cross-origin"
                         allowfullscreen>
                     </iframe>
                     <h3>RUGENDOINI-INI</h3>
-                    <p>Inspirational songs of comfort and restoration for those going through difficult times.</p>
-                    <button class="listen-btn" onclick="togglePlayer('player2')">Listen to Sample</button>
-                    <div id="player2" class="audio-player">
-                        <audio id="audio2" preload="metadata">
-                            <source src="hope-and-healing.mp3" type="audio/mpeg">
-                            Your browser does not support the audio element.
-                        </audio>
-                        <div class="audio-controls">
-                            <button id="playBtn2" class="control-btn" onclick="togglePlayPause('audio2', 'playBtn2')">▶ Play</button>
-                            <button class="control-btn" onclick="stopAudio('audio2', 'playBtn2')">⏹ Stop</button>
-                            <div class="progress-container" onclick="setProgress(event, 'audio2')">
-                                <div id="progress2" class="progress-bar"></div>
-                            </div>
-                            <div class="time-info">
-                                <span id="currentTime2">0:00</span>
-                                <span id="duration2">0:00</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Album 3: NGAI MWIHOKEKU -->
-                <div class="album-card">
-                    <iframe
-                        src="https://www.youtube.com/embed/PaCgJZ48aeg?si=e9OMRpwBgntIU29A"
-                        height="200px"
-                        title="NGAI MWIHOKEKU - YouTube video player"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin"
-                        allowfullscreen>
-                    </iframe>
-                    <h3>NGAI MWIHOKEKU</h3>
-                    <p>Powerful declarations of faith and triumph through Jesus Christ our Lord and Savior.</p>
-                    <button class="listen-btn" onclick="togglePlayer('player3')">Listen to Sample</button>
-                    <div id="player3" class="audio-player">
-                        <audio id="audio3" preload="metadata">
-                            <source src="victory-in-christ.mp3" type="audio/mpeg">
-                            Your browser does not support the audio element.
-                        </audio>
-                        <div class="audio-controls">
-                            <button id="playBtn3" class="control-btn" onclick="togglePlayPause('audio3', 'playBtn3')">▶ Play</button>
-                            <button class="control-btn" onclick="stopAudio('audio3', 'playBtn3')">⏹ Stop</button>
-                            <div class="progress-container" onclick="setProgress(event, 'audio3')">
-                                <div id="progress3" class="progress-bar"></div>
-                            </div>
-                            <div class="time-info">
-                                <span id="currentTime3">0:00</span>
-                                <span id="duration3">0:00</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Album 4: IHOYA RIAKWA -->
-                <div class="album-card">
-                    <iframe
-                        src="https://www.youtube.com/embed/8zgrzyuNwAA?si=e4JclaHN_XCgo-5R"
-                        height="200px"
-                        title="YouTube video player"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin"
-                        allowfullscreen>
-                    </iframe>
-                    <h3>IHOYA RIAKWA</h3>
-                    <p>Powerful declarations of faith and triumph through Jesus Christ our Lord and Savior.</p>
-                    <button class="listen-btn" onclick="togglePlayer('player4')">Listen to Sample</button>
-                    <div id="player4" class="audio-player">
-                        <audio id="audio4" preload="metadata">
-                            <source src="victory-in-christ.mp3" type="audio/mpeg">
-                            Your browser does not support the audio element.
-                        </audio>
-                        <div class="audio-controls">
-                            <button id="playBtn4" class="control-btn" onclick="togglePlayPause('audio4', 'playBtn4')">▶ Play</button>
-                            <button class="control-btn" onclick="stopAudio('audio4', 'playBtn4')">⏹ Stop</button>
-                            <div class="progress-container" onclick="setProgress(event, 'audio4')">
-                                <div id="progress4" class="progress-bar"></div>
-                            </div>
-                            <div class="time-info">
-                                <span id="currentTime4">0:00</span>
-                                <span id="duration4">0:00</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Album 5: MEHIA -->
-                <div class="album-card">
-                    <iframe
-                        src="https://www.youtube.com/embed/OdB6K8sKmR8?si=hH7vCw6HA9K23onx"
-                        height="200px"
-                        title="YouTube video player"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin"
-                        allowfullscreen>
-                    </iframe>
-                    <h3>MEHIA</h3>
-                    <p>Powerful declarations of faith and triumph through Jesus Christ our Lord and Savior.</p>
-                    <button class="listen-btn" onclick="togglePlayer('player5')">Listen to Sample</button>
-                    <div id="player5" class="audio-player">
-                        <audio id="audio5" preload="metadata">
-                            <source src="victory-in-christ.mp3" type="audio/mpeg">
-                            Your browser does not support the audio element.
-                        </audio>
-                        <div class="audio-controls">
-                            <button id="playBtn5" class="control-btn" onclick="togglePlayPause('audio5', 'playBtn5')">▶ Play</button>
-                            <button class="control-btn" onclick="stopAudio('audio5', 'playBtn5')">⏹ Stop</button>
-                            <div class="progress-container" onclick="setProgress(event, 'audio5')">
-                                <div id="progress5" class="progress-bar"></div>
-                            </div>
-                            <div class="time-info">
-                                <span id="currentTime5">0:00</span>
-                                <span id="duration5">0:00</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Album 6: NGAI UHINGAGIA IRATHIMO -->
-                <div class="album-card">
-                    <iframe
-                        src="https://www.youtube.com/embed/yrYGI4N84m4?si=FLwC8M1rTb_ESOa1"
-                        height="200px"
-                        title="YouTube video player"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin"
-                        allowfullscreen>
-                    </iframe>
-                    <h3>NGAI UHINGAGIA IRATHIMO</h3>
-                    <p>Powerful declarations of faith and triumph through Jesus Christ our Lord and Savior.</p>
-                    <button class="listen-btn" onclick="togglePlayer('player6')">Listen to Sample</button>
-                    <div id="player6" class="audio-player">
-                        <audio id="audio6" preload="metadata">
-                            <source src="victory-in-christ.mp3" type="audio/mpeg">
-                            Your browser does not support the audio element.
-                        </audio>
-                        <div class="audio-controls">
-                            <button id="playBtn6" class="control-btn" onclick="togglePlayPause('audio6', 'playBtn6')">▶ Play</button>
-                            <button class="control-btn" onclick="stopAudio('audio6', 'playBtn6')">⏹ Stop</button>
-                            <div class="progress-container" onclick="setProgress(event, 'audio6')">
-                                <div id="progress6" class="progress-bar"></div>
-                            </div>
-                            <div class="time-info">
-                                <span id="currentTime6">0:00</span>
-                                <span id="duration6">0:00</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Album 7: Thamaka -->
-                <div class="album-card">
-                    <iframe
-                        src="https://www.youtube.com/embed/UEFq2jvdVro?si=4_nqe1w5MHeCrQr-"
-                        height="200px"
-                        title="YouTube video player"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin"
-                        allowfullscreen>
-                    </iframe>
-                    <h3>Thamaka</h3>
-                    <p>Powerful declarations of faith and triumph through Jesus Christ our Lord and Savior.</p>
-                    <button class="listen-btn" onclick="togglePlayer('player7')">Listen to Sample</button>
-                    <div id="player7" class="audio-player">
-                        <audio id="audio7" preload="metadata">
-                            <source src="victory-in-christ.mp3" type="audio/mpeg">
-                            Your browser does not support the audio element.
-                        </audio>
-                        <div class="audio-controls">
-                            <button id="playBtn7" class="control-btn" onclick="togglePlayPause('audio7', 'playBtn7')">▶ Play</button>
-                            <button class="control-btn" onclick="stopAudio('audio7', 'playBtn7')">⏹ Stop</button>
-                            <div class="progress-container" onclick="setProgress(event, 'audio7')">
-                                <div id="progress7" class="progress-bar"></div>
-                            </div>
-                            <div class="time-info">
-                                <span id="currentTime7">0:00</span>
-                                <span id="duration7">0:00</span>
-                            </div>
-                        </div>
-                    </div>
+                    <p>Inspirational songs of comfort.</p>
+                    <button class="listen-btn" disabled>Sample Unavailable</button>
                 </div>
             </div>
         </div>
@@ -1152,22 +713,12 @@
                 <div class="ministry-card">
                     <div class="ministry-icon">⛪</div>
                     <h3>Church Ministry</h3>
-                    <p>Leading worship and ministering in churches across Kenya, creating an atmosphere of true worship and encounter with God.</p>
+                    <p>Leading worship in churches across Kenya.</p>
                 </div>
                 <div class="ministry-card">
                     <div class="ministry-icon">👥</div>
                     <h3>Community Outreach</h3>
-                    <p>Bringing hope and healing to communities through gospel concerts and outreach programs.</p>
-                </div>
-                <div class="ministry-card">
-                    <div class="ministry-icon">🎤</div>
-                    <h3>Recording Ministry</h3>
-                    <p>Creating and sharing gospel music that ministers to hearts and spreads the message of Christ's love.</p>
-                </div>
-                <div class="ministry-card">
-                    <div class="ministry-icon">🙏</div>
-                    <h3>Prayer & Intercession</h3>
-                    <p>Partnering with believers in prayer and intercession for revival and spiritual awakening.</p>
+                    <p>Bringing hope through gospel concerts.</p>
                 </div>
             </div>
         </div>
@@ -1185,99 +736,70 @@
                     <h3>📱 Phone</h3>
                     <p>+49 1521 7304796</p>
                 </div>
-                <div class="contact-item">
-                    <h3>📍 Location</h3>
-                    <p>Berlin, Germany</p>
-                </div>
-                <div class="contact-item">
-                    <h3>🎵 Bookings</h3>
-                    <p>Available for concerts, church services, and special events</p>
-                </div>
             </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>© 2025 Monica Wanja Kangara. All rights reserved. | Blessed to be a blessing through music</p>
+            <p>© 2025 Monica Wanja Kangara. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        // Enhanced Loader functionality
+        // Loader functionality
         window.addEventListener('load', () => {
             const loader = document.getElementById('loader');
             const particleContainer = document.getElementById('loader-particles');
-            const notes = ['♪', '♫', '♬', '♩'];
+            const notes = ['♪', '♫', '♬'];
+            const isMobile = window.innerWidth <= 768;
+            const particleCount = isMobile ? 8 : 30;
+            const noteCount = isMobile ? 2 : 10;
+            const loaderTimeout = isMobile ? 1000 : 3000;
 
-            // Create loader particles
-            for (let i = 0; i < 20; i++) {
+            // Create particles
+            for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'loader-particle';
                 particle.style.left = `${Math.random() * 100}%`;
-                particle.style.animationDelay = `${Math.random() * 3}s`;
-                particle.style.animationDuration = `${2 + Math.random() * 2}s`;
+                particle.style.animationDelay = `${Math.random() * (isMobile ? 0.3 : 2)}s`;
+                particle.style.animationDuration = `${isMobile ? 1 : 3 + Math.random() * 2}s`;
                 particleContainer.appendChild(particle);
             }
 
-            // Create floating musical notes
-            for (let i = 0; i < 8; i++) {
+            // Create notes
+            for (let i = 0; i < noteCount; i++) {
                 const note = document.createElement('div');
                 note.className = 'loader-note';
                 note.textContent = notes[Math.floor(Math.random() * notes.length)];
                 note.style.left = `${Math.random() * 100}%`;
-                note.style.animationDelay = `${Math.random() * 2}s`;
-                note.style.animationDuration = `${2 + Math.random() * 1}s`;
+                note.style.animationDelay = `${Math.random() * (isMobile ? 0.3 : 1.5)}s`;
+                note.style.animationDuration = `${isMobile ? 1.5 : 4 + Math.random() * 1}s`;
                 particleContainer.appendChild(note);
             }
 
-            // Hide loader after animation
+            // Hide loader and clean up
             setTimeout(() => {
                 loader.classList.add('hidden');
                 setTimeout(() => {
                     loader.style.display = 'none';
-                }, 500);
-            }, 2500);
+                    particleContainer.innerHTML = ''; // Clean up particles and notes
+                }, 200);
+            }, loaderTimeout);
         });
 
-        // Smooth scrolling for navigation links
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
         });
 
-        // Add active class to navigation on scroll
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-links a');
-
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (window.pageYOffset >= sectionTop - 200) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Add typing effect for hero tagline
-        function typeWriter(element, text, speed = 100) {
+        // Typing effect
+        function typeWriter(element, text, speed = 80) {
             let i = 0;
             element.innerHTML = '';
             function type() {
@@ -1290,22 +812,12 @@
             type();
         }
 
-        // Initialize typing effect after loader
         window.addEventListener('load', () => {
             setTimeout(() => {
                 const tagline = document.querySelector('.hero .tagline');
-                const originalText = tagline.textContent;
-                typeWriter(tagline, originalText, 80);
-            }, 3000);
+                typeWriter(tagline, tagline.textContent, 80);
+            }, window.innerWidth <= 768 ? 1000 : 3000);
         });
-
-        // Add floating animation to album covers
-        function addFloatingAnimation() {
-            const albumCovers = document.querySelectorAll('.album-card iframe');
-            albumCovers.forEach((cover, index) => {
-                cover.style.animation = `float ${3 + index * 0.5}s ease-in-out infinite`;
-            });
-        }
 
         // Audio player functionality
         function togglePlayer(playerId) {
@@ -1318,15 +830,13 @@
             const btn = document.getElementById(btnId);
 
             if (audio.paused) {
-                document.querySelectorAll('audio').forEach(otherAudio => {
-                    if (otherAudio.id !== audioId && !otherAudio.paused) {
-                        otherAudio.pause();
-                        const otherBtnId = 'playBtn' + otherAudio.id.slice(-1);
-                        document.getElementById(otherBtnId).innerHTML = '▶ Play';
+                document.querySelectorAll('audio').forEach(other => {
+                    if (other !== audio && !other.paused) {
+                        other.pause();
+                        document.getElementById('playBtn' + other.id.slice(-1)).innerHTML = '▶ Play';
                     }
                 });
-
-                audio.play();
+                audio.play().catch(() => {});
                 btn.innerHTML = '⏸ Pause';
             } else {
                 audio.pause();
@@ -1337,7 +847,6 @@
         function stopAudio(audioId, btnId) {
             const audio = document.getElementById(audioId);
             const btn = document.getElementById(btnId);
-
             audio.pause();
             audio.currentTime = 0;
             btn.innerHTML = '▶ Play';
@@ -1348,10 +857,8 @@
             const progressContainer = event.currentTarget;
             const clickX = event.offsetX;
             const width = progressContainer.offsetWidth;
-            const duration = audio.duration;
-
-            if (duration) {
-                audio.currentTime = (clickX / width) * duration;
+            if (audio.duration) {
+                audio.currentTime = (clickX / width) * audio.duration;
             }
         }
 
@@ -1361,7 +868,6 @@
             return `${mins}:${secs.toString().padStart(2, '0')}`;
         }
 
-        // Set up event listeners for all audio elements
         document.querySelectorAll('audio').forEach((audio, index) => {
             const audioNum = index + 1;
             const progressBar = document.getElementById(`progress${audioNum}`);
@@ -1369,127 +875,91 @@
             const durationEl = document.getElementById(`duration${audioNum}`);
             const playBtn = document.getElementById(`playBtn${audioNum}`);
 
-            audio.addEventListener('timeupdate', function() {
+            audio.addEventListener('timeupdate', () => {
                 if (audio.duration) {
-                    const progress = (audio.currentTime / audio.duration) * 100;
-                    progressBar.style.width = progress + '%';
+                    progressBar.style.width = (audio.currentTime / audio.duration) * 100 + '%';
                     currentTimeEl.textContent = formatTime(audio.currentTime);
                 }
             });
 
-            audio.addEventListener('loadedmetadata', function() {
+            audio.addEventListener('loadedmetadata', () => {
                 durationEl.textContent = formatTime(audio.duration);
             });
 
-            audio.addEventListener('ended', function() {
+            audio.addEventListener('ended', () => {
                 playBtn.innerHTML = '▶ Play';
                 progressBar.style.width = '0%';
                 currentTimeEl.textContent = '0:00';
             });
         });
 
-        // Enhanced particle system
+        // Hero particles
         function createParticles() {
             const hero = document.querySelector('.hero');
-            const particleCount = 50;
-
+            const particleCount = window.innerWidth <= 768 ? 5 : 20;
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
-                particle.className = 'particle';
-                const size = Math.random() * 6 + 2;
+                const size = Math.random() * 4 + 2;
                 particle.style.cssText = `
                     position: absolute;
                     width: ${size}px;
                     height: ${size}px;
-                    background: ${Math.random() > 0.5 ? 'rgba(255, 215, 0, 0.8)' : 'rgba(255, 165, 0, 0.6)'};
+                    background: rgba(255, 215, 0, 0.7);
                     border-radius: 50%;
                     pointer-events: none;
-                    animation: particleFloat ${3 + Math.random() * 8}s linear infinite;
+                    animation: particleFloat ${3 + Math.random() * 5}s linear infinite;
                     left: ${Math.random() * 100}%;
                     top: ${Math.random() * 100}%;
-                    animation-delay: ${Math.random() * 5}s;
-                    box-shadow: 0 0 10px currentColor;
+                    animation-delay: ${Math.random() * 3}s;
                 `;
                 hero.appendChild(particle);
             }
         }
 
-        // Create musical notes animation
+        // Musical notes animation
         function createMusicalNotes() {
             const hero = document.querySelector('.hero');
-            const notes = ['♪', '♫', '♬', '♩', '♭', '♯'];
-
+            const notes = ['♪', '♫', '♬'];
             setInterval(() => {
                 const note = document.createElement('div');
                 note.textContent = notes[Math.floor(Math.random() * notes.length)];
                 note.style.cssText = `
                     position: absolute;
-                    font-size: ${Math.random() * 20 + 15}px;
-                    color: rgba(255, 215, 0, 0.7);
+                    font-size: ${Math.random() * 15 + 10}px;
+                    color: rgba(255, 215, 0, 0.6);
                     pointer-events: none;
                     left: ${Math.random() * 100}%;
                     top: 100%;
-                    animation: noteRise 4s ease-out forwards;
-                    z-index: 1;
+                    animation: noteRise 3s ease-out forwards;
                 `;
                 hero.appendChild(note);
-
-                setTimeout(() => {
-                    if (note.parentNode) {
-                        note.parentNode.removeChild(note);
-                    }
-                }, 4000);
-            }, 800);
+                setTimeout(() => note.remove(), 3000);
+            }, 1000);
         }
 
-        // Add scroll-triggered animations
+        // Scroll animations
         function addScrollAnimations() {
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.style.animation = 'slideInUp 0.8s ease-out forwards';
+                        entry.target.style.animation = 'slideInUp 0.6s ease-out forwards';
                     }
                 });
-            }, observerOptions);
+            }, { threshold: 0.1 });
 
             document.querySelectorAll('.album-card, .ministry-card, .contact-item').forEach(card => {
                 observer.observe(card);
             });
         }
 
-        // Rainbow text effect for special occasions
-        function addRainbowEffect() {
-            const heroTitle = document.querySelector('.hero h1');
-            setInterval(() => {
-                heroTitle.style.background = `linear-gradient(45deg,
-                    hsl(${Math.random() * 360}, 70%, 70%),
-                    hsl(${Math.random() * 360}, 70%, 70%),
-                    hsl(${Math.random() * 360}, 70%, 70%))`;
-                heroTitle.style.webkitBackgroundClip = 'text';
-                heroTitle.style.webkitTextFillColor = 'transparent';
-                heroTitle.style.backgroundClip = 'text';
-
-                setTimeout(() => {
-                    heroTitle.style.background = 'none';
-                    heroTitle.style.webkitTextFillColor = 'white';
-                    heroTitle.style.color = 'white';
-                }, 2000);
-            }, 10000);
-        }
-
         // Initialize animations
-        setTimeout(() => {
-            addFloatingAnimation();
-            createParticles();
-            createMusicalNotes();
-            addScrollAnimations();
-            addRainbowEffect();
-        }, 2500);
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                createParticles();
+                createMusicalNotes();
+                addScrollAnimations();
+            }, window.innerWidth <= 768 ? 1000 : 3000);
+        });
     </script>
 </body>
 </html>
